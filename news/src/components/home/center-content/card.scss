@@ -1,0 +1,17 @@
+.card-content{
+    padding: 1.5em 0;
+    img{
+        border-radius: 2px;
+        height: 200px;
+    }
+    .card-info{
+        color: black;
+        text-decoration: none;
+        .title{
+            font-size: 1.7em;
+        }
+    }
+    .card-info:hover{
+        color: #032a63;
+    }
+}

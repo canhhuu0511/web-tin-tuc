@@ -1,0 +1,48 @@
+.left-card{
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.513);
+    .left-card_nav{
+        display: flex;
+        list-style: none;
+        gap: 20px;
+        align-items: center;
+        padding: 0;
+        a{
+            color: rgba(128, 128, 128, 0.705);
+            text-decoration: none;
+        }
+        .main-item{
+            color: black;
+            font-size: 1.5em;
+            border-bottom: 1px solid blue;
+        }
+    }
+    img{
+        width: 200px;
+        height: auto;
+        object-fit: cover;
+    }
+    .info{
+        h2{
+            font-size: 1.2em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+        p{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4; /* number of lines to show */
+            -webkit-box-orient: vertical;
+        }
+    }
+    .border-right{
+        border-right: 1px solid rgba(128, 128, 128, 0.516);
+    }
+    .border-top{
+        border-top: 1px solid rgba(128, 128, 128, 0.516);
+    }
+}

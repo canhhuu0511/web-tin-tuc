@@ -1,0 +1,17 @@
+@import "../../style";
+
+.center-content{
+    .container{
+        .row{
+            // height: 100vh;
+            @media (max-width:756px) {
+                .right-content{
+                    margin-top: 2em;
+                    padding:0;
+                }
+            }
+        
+        }
+    }
+}
+

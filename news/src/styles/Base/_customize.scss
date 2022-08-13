@@ -1,0 +1,9 @@
+// đè code của thư viện khi muốn sửa giao diện theo ý mình
+.bg-dark{ background-color: #000000 !important;}
+.text-line-2{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}

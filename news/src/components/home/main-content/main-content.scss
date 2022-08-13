@@ -1,0 +1,12 @@
+.main-content{
+    display: flex;
+    .container{
+        padding-left: 5px;
+        .borderPanel{
+            width: 100%;
+            background-color: white;
+            border-radius: 1%;
+            padding: 2rem;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+@import "./styles/Base/reset";
+@import "./styles/Base/customize";
+
+@import "./styles/Helper/function";
+@import "./styles/Helper/variables";
+@import "./styles/Helper/mixin";
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a{
+    color: black;
+    text-decoration: none;
+    transition: all 0.1s;
+}
+a:hover{
+    color: #032a63 !important;
+}
