@@ -1,7 +1,7 @@
 
 # Kenh33
 News app with ReactJS and String boot (API). Crawl data from "https://vnexpress.net || https://www.nguoiduatin.vn"
-![demo](relative/path/to/img.jpg?raw=true "Title")
+![demo](https://raw.githubusercontent.com/canhhuu0511/web-tin-tuc/master/web-tin-tuc.png?raw=true "Title")
 
 
 ## 🛠 Skills
