@@ -4,6 +4,7 @@ import com.api.feedRssNews.DTO.CategoryDTO;
 import com.api.feedRssNews.DTO.RSSFeedDTO;
 import com.api.feedRssNews.utility.RSSFeedParser;
 import com.api.feedRssNews.utility.WebCrawler;
+import com.rometools.rome.io.FeedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -22,10 +24,10 @@ public class FeedController {
     private RSSFeedParser rssFeedParser;
 
     @GetMapping("")
-    public ResponseEntity<List<RSSFeedDTO>> getAll(@RequestParam String url){
+    public ResponseEntity<List<RSSFeedDTO>> getAll(@RequestParam String url) throws FeedException, IOException {
         rssFeedParser = new RSSFeedParser(url);
         List<RSSFeedDTO> list =  rssFeedParser.readFeed();
-        list.remove(0);
+//        list.remove(0);
         return ResponseEntity.ok().body(list);
     }
     @GetMapping("/detail")

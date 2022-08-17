@@ -9,6 +9,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.io.FeedException;
+import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
+
 
 import javax.xml.stream.XMLEventReader;
 import javax.xml.stream.XMLInputFactory;
@@ -31,59 +37,18 @@ public class RSSFeedParser{
             throw new RuntimeException(e);
         }
     }
-
-    public List<RSSFeedDTO> readFeed() {
+    public List<RSSFeedDTO> readFeed() throws IOException, FeedException {
         List<RSSFeedDTO> feeds = new ArrayList<>();
-        try {
-            boolean isFeedHeader = true;
-            // Set header values intial to the empty string
-            String description = "";
-            String title = "";
-            String link = "";
-            int i = 0 ;
-            String pubdate = "";
-
-            // First create a new XMLInputFactory
-            XMLInputFactory inputFactory = XMLInputFactory.newInstance();
-            // Setup a new eventReader
-            InputStream in = read();
-            XMLEventReader eventReader = inputFactory.createXMLEventReader(in);
-            // read the XML document
-            int id = 0;
-            while (eventReader.hasNext()) {
-                XMLEvent event = eventReader.nextEvent();
-                if (event.isStartElement()) {
-                    String localPart = event.asStartElement().getName()
-                            .getLocalPart();
-                    switch (localPart) {
-                        case ITEM:
-                            if (isFeedHeader) {
-                                isFeedHeader = false;
-                            }
-                            id++;
-                            feeds.add(convertDataToDTO(id,title,description, link, pubdate));
-                            event = eventReader.nextEvent();
-                            break;
-                        case TITLE:
-                            title = getCharacterData(event, eventReader);
-                            break;
-                        case DESCRIPTION:
-                            description = getCharacterData(event, eventReader);
-                            break;
-                        case LINK:
-                            link = getCharacterData(event, eventReader);
-                            break;
-                        case PUB_DATE:
-                            pubdate = getCharacterData(event, eventReader);
-                            break;
-
-                    }
-                } else if (event.isEndElement()) {
-
-                }
-            }
-        } catch (XMLStreamException e) {
-            throw new RuntimeException(e);
+        SyndFeedInput input = new SyndFeedInput();
+        SyndFeed feed = input.build(new XmlReader(this.url));
+        int id = 0;
+        for (SyndEntry entry : (List<SyndEntry>) feed.getEntries()) {
+            id ++;
+            String title = entry.getTitle();
+            String description = entry.getDescription().getValue().toString();
+            String link = entry.getLink();
+            String pubdate = entry.getPublishedDate().getTime()+"";
+            feeds.add(convertDataToDTO(id,title,description, link, pubdate));
         }
         return feeds;
     }
@@ -112,12 +77,15 @@ public class RSSFeedParser{
         result.setPubDate(pubDate);
         result.setId("RF00"+id);
         try {
-            result.setImage(detailInfo.substring(detailInfo.indexOf("src=") + 5, detailInfo.indexOf("></a>") - 2));
-            result.setDescription(detailInfo.substring(detailInfo.indexOf("</br>") + 5));
-        }catch (Exception e){
-            result.setImage("");
-            result.setDescription("");
+            result.setImage(detailInfo.substring(detailInfo.indexOf("src=") + 5, detailInfo.indexOf(".jpg") +4));
+            if(detailInfo.indexOf("</br>")==-1)
+            result.setDescription(detailInfo.substring(detailInfo.indexOf("</a>") + 4));
+            else result.setDescription(detailInfo.substring(detailInfo.indexOf("</br>") + 5));
 
+        }catch (Exception e){
+            System.out.println(detailInfo.indexOf("src="));
+            System.out.println(detailInfo.indexOf(".jpg") +4);
+            System.out.println(detailInfo);
         }
         return result;
     }
