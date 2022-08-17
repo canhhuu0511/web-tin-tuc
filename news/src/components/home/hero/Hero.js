@@ -36,8 +36,8 @@ const Hero = (props) => {
               <div className="card-body borderPanel">
                 <h2>Tin mới nhất</h2>
                 {listNews.slice(1,4).map((feed)=>
-                (<div key={feed.id} className="d-flex border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
-                  <div className="pr-3 font-weight-bold">
+                (<div key={feed.id} className="row border-bottom-blue pt-3 pb-4 align-items-center justify-content-between">
+                  <div className="col-xl-8 pr-3 font-weight-bold">
                     <Link
                       style={{ color: "white", textDecoration: "none" }}
                       to={"#"}
@@ -53,10 +53,10 @@ const Hero = (props) => {
                       </p>
                     </div>
                   </div>
-                  <div >
+                  <div className='col-xl-4'>
                     {feed.image!==''?
                     (<img
-                      style={{ width: "100px" }}
+                      style={{ width: "100%" }}
                       src={`${feed.image}`}
                       alt=""
                     />

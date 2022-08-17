@@ -1,9 +1,17 @@
 import React from 'react'
+import Card from './card'
 import "./right-main-content.scss"
 
 const RightMainContent = () => {
   return (
-    <div>RightMainContent</div>
+    <div className='border-rigth'>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+    </div>
   )
 }
 

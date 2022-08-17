@@ -1,12 +1,14 @@
 .left-card{
     padding-bottom: 2em;
     border-bottom: 1px solid rgba(128, 128, 128, 0.513);
+    margin-bottom: 2em;
     .left-card_nav{
         display: flex;
         list-style: none;
         gap: 20px;
         align-items: center;
         padding: 0;
+        text-align: center;
         a{
             color: rgba(128, 128, 128, 0.705);
             text-decoration: none;

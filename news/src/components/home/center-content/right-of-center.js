@@ -6,10 +6,10 @@ const RightContent = ({listNews}) => {
     <div className="col-md-9 col-sm-12  right-content">
         <div className='content borderPanel'>
           <ul className='container'>
-              {listNews.map((e)=>(
+              {listNews.map((e,index)=>(
                 e.image===''?
                 <></>:
-                <Card feed={e}/>
+                <Card key={index} feed={e}/>
               ))}
           </ul>
         </div>

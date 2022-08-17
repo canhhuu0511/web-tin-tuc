@@ -27,8 +27,10 @@ export const newsSlice = createSlice({
     [getCategories.fulfilled]:(state,action)=>{
         state.loading = false;
         state.categories=action.payload;
+
     },
     [getListNews.fulfilled]:(state,action)=>{
+        console.log(action)
         state.loading = false;
         state.listNews=action.payload;
     },

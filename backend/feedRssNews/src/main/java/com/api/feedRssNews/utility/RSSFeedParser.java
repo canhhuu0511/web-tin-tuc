@@ -16,6 +16,9 @@ import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.XMLEvent;
 public class RSSFeedParser{
+    public static final String URL_VNEXPRESS = "https://vnexpress.net";
+    public static final String URL_NGUOIDUATIN = "https://www.nguoiduatin.vn";
+
     static final String TITLE = "title";
     static final String DESCRIPTION = "description";
     static final String LINK = "link";
@@ -27,6 +30,7 @@ public class RSSFeedParser{
     public RSSFeedParser(String feedUrl) {
         try {
             this.url = new URL(feedUrl);
+            System.out.println(this.url.getHost());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -113,11 +117,13 @@ public class RSSFeedParser{
         result.setId("RF00"+id);
         try {
             result.setImage(detailInfo.substring(detailInfo.indexOf("src=") + 5, detailInfo.indexOf("></a>") - 2));
-            result.setDescription(detailInfo.substring(detailInfo.indexOf("</br>") + 5));
+            if(this.url.getHost().startsWith(URL_VNEXPRESS))
+                result.setDescription(detailInfo.substring(detailInfo.indexOf("</br>") + 5));
+            else if(this.url.getHost().startsWith(URL_NGUOIDUATIN))
+                result.setDescription(detailInfo.substring(detailInfo.indexOf("</a>") + 5));
         }catch (Exception e){
             result.setImage("");
             result.setDescription("");
-
         }
         return result;
     }

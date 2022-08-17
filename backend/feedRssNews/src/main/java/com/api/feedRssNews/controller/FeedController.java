@@ -38,7 +38,7 @@ public class FeedController {
     @GetMapping("/categories")
     public ResponseEntity<List<CategoryDTO>> getCategories(){
         webCrawler = new WebCrawler();
-        List<CategoryDTO> result = webCrawler.getCategory("https://vnexpress.net/");
+        List<CategoryDTO> result = webCrawler.getCategory("https://www.nguoiduatin.vn/");
         if(result!=null&&result.size()>0){
             return ResponseEntity.ok().body(result);
         }
