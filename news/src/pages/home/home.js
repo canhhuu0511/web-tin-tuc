@@ -13,7 +13,7 @@ export const Home = (props) => {
     <div className="home">
           <Hero listNews={listNews}/>
           <CenterContent categories={categories}/>
-          <MainContent/>
+          <MainContent categories={categories}/>
     </div>
   ):<></>;
 };
