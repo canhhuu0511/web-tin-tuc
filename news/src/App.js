@@ -7,7 +7,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import Loading from "./pages/loading_page/Loading";
 import { PATHS } from "./constants/path";
 import {useDispatch} from "react-redux";
-import { getCategories, getListNews } from "./redux/slices/newsSlice";
+import { getCategories, getListNews, getListSubNews } from "./redux/slices/newsSlice";
 
 function App() {
   const [listNews, setListNews] = useState([]);
@@ -27,6 +27,7 @@ function App() {
     const initData = async () =>{
       await dispatch(getCategories());
       await dispatch(getListNews(PATHS.TRANGCHU));
+      await dispatch(getListSubNews());
     }
     initData();
   }, []);
@@ -36,8 +37,7 @@ function App() {
         <Routes>
           <Route path="" element={<Default_Template />}>
             <Route path="/" element={<Home  />} />
-            <Route path="news" element={<News />} />
-            <Route path="detail/:id" element={<NewDetail />} />
+            <Route path="news/:url" element={<News />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

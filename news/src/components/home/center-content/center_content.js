@@ -1,7 +1,7 @@
 import React from "react";
 import "./center-content.scss";
-import LeftContent from "./left-of-center";
-import RightContent from "./right-of-center";
+import ListCategories from "./list-categories/list-categories";
+import RightContent from "./right-of-center/right-of-center";
 import {useSelector} from "react-redux";
 
 const CenterContent = (props) => {
@@ -11,7 +11,7 @@ const CenterContent = (props) => {
     <div className="center-content">
       <div className="container">
         <div className="row">
-          <LeftContent categories={categories}/>
+          <ListCategories categories={categories}/>
           <RightContent listNews={listNews.slice(5,9)} />
         </div>
       </div>

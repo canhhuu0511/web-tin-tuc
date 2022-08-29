@@ -5,16 +5,34 @@
 @import "./styles/Helper/variables";
 @import "./styles/Helper/mixin";
 
-body{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-a{
-    color: black;
-    text-decoration: none;
-    transition: all 0.1s;
+a {
+  color: black;
+  text-decoration: none;
+  transition: all 0.1s;
 }
-a:hover{
-    color: #032a63 !important;
+a:hover {
+  color: #032a63 !important;
+}
+
+//custom scrool bar
+.scrollbar {
+  height: 100%;
+  background: #f5f5f5;
+  overflow-y: scroll;
+  margin-bottom: 25px;
+  scroll-behavior: smooth;
+  margin-right: 1px;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color:rgba(20, 50, 93, 0.544);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-navy-0;
+    border-radius: 5px;
+  }
 }

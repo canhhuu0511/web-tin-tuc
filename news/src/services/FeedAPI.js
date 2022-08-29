@@ -13,6 +13,12 @@ export class FeedService{
             method:"GET"
         })
     }
+    getNewsDetail = (url) =>{
+        return axios({
+            url:`${domain}/newsfeed/detail?url=${url}`,
+            method:"GET"
+        })
+    }
 
 }
 

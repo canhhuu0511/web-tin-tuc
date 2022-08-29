@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { sliceLink } from '../../../services/sliceLink';
+import HeroSkeleton from './hero-skeleton';
 import "./hero.scss"
 
 const Hero = (props) => {
-
   const {listNews}=props;
-
-  return (
+  
+  return listNews&&listNews.length>0?(
     <div className="container">
         <div className="row" data-aos="fade-up">
           <div className="col-xl-8  grid-margin borderPanel p-0 " style={{backgroundImage:`url(${listNews[0].image})`,backgroundRepeat:"no-repeat",backgroundPosition:"center",backgroundSize:"cover"}}>
@@ -17,7 +18,7 @@ const Hero = (props) => {
                     Tin chính
                   </div>
                   <Link
-                    to={"#"}
+                    to={`/news/${sliceLink(listNews[0].link)}`} state={`${listNews[0].link}`}
                     style={{ color: "rgba(255, 255, 255, 1)" }}
                   >
                     <h1 className="mb-2">
@@ -69,7 +70,7 @@ const Hero = (props) => {
           </div>
         </div>
     </div>
-  )
+  ):<HeroSkeleton/>
 }
 
 export default Hero

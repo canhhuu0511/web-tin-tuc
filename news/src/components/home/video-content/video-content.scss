@@ -1,5 +1,6 @@
-.main-content{
+.video-content{
     display: flex;
+    // height: 100vh;
     .container{
         padding-left: 5px;
         .borderPanel{
@@ -7,13 +8,15 @@
             height: 100%;
             background-color: white;
             border-radius: 1%;
-            padding: 2rem;
-        }
-        @media screen and (max-width : 1024px) {
-            .borderPanel{
-                padding: 0;
+            padding: 2rem !important;
+            .list-sub-video{
+                height: 450px;
             }
-            
+        }
+        @media only screen and (max-height:1024px) {
+            .borderPanel{
+                padding: 2rem 0;
+            }
         }
     }
 }

@@ -27,7 +27,6 @@ public class FeedController {
     public ResponseEntity<List<RSSFeedDTO>> getAll(@RequestParam String url) throws FeedException, IOException {
         rssFeedParser = new RSSFeedParser(url);
         List<RSSFeedDTO> list =  rssFeedParser.readFeed();
-//        list.remove(0);
         return ResponseEntity.ok().body(list);
     }
     @GetMapping("/detail")

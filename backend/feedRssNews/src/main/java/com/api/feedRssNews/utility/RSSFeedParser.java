@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.rometools.rome.feed.synd.SyndEntry;
@@ -45,24 +46,33 @@ public class RSSFeedParser{
             String title = entry.getTitle();
             String description = entry.getDescription().getValue().toString();
             String link = entry.getLink();
-            String pubdate = entry.getPublishedDate().getTime()+"";
-            feeds.add(convertDataToDTO(id,title,description, link, pubdate));
+            Date pubdate = entry.getPublishedDate();
+            RSSFeedDTO rssFeedDTO = convertDataToDTO(id,title,description, link, pubdate);
+            if(rssFeedDTO.getImage()!=null)
+                feeds.add(rssFeedDTO);
         }
         return feeds;
     }
 
-    private RSSFeedDTO convertDataToDTO(int id,String title,String detailInfo,String link,String pubDate){
+    private RSSFeedDTO convertDataToDTO(int id,String title,String detailInfo,String link,Date pubDate){
         RSSFeedDTO result = new RSSFeedDTO();
         result.setTitle(title);
         result.setLink(link);
         result.setPubDate(pubDate);
         result.setId("RF00"+id);
         try {
-            result.setImage(detailInfo.substring(detailInfo.indexOf("src=") + 5, detailInfo.indexOf("></a>") - 2));
-            result.setDescription(detailInfo.substring(detailInfo.indexOf("</br>") + 5));
+            if(detailInfo.indexOf("</br>")==-1) {
+                result.setImage(detailInfo.substring(detailInfo.indexOf("src=") + 5, detailInfo.indexOf("width") -2));
+                result.setDescription(detailInfo.substring(detailInfo.indexOf("</a>") + 4));
+                result.setImage(result.getImage().replaceAll("thumb_x180x115","thumb_x992x595"));
+//                thumb_x180x115
+            }else {
+                result.setImage(detailInfo.substring(detailInfo.indexOf("src=") + 5, detailInfo.indexOf("></a>") -2));
+                result.setDescription(detailInfo.substring(detailInfo.indexOf("</br>") + 5));}
         }catch (Exception e){
-            result.setImage("");
-            result.setDescription("");
+            System.out.println(detailInfo.indexOf("src="));
+            System.out.println(detailInfo.indexOf(".jpg") +4);
+            System.out.println(detailInfo);
         }
         return result;
     }
