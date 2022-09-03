@@ -10,7 +10,6 @@ const LeftMainContent = ({ categories }) => {
 
   useEffect(() => {
     const getData = async () => {
-      
     };
     getData();
   }, [news]);

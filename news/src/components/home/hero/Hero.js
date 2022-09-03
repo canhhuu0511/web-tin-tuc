@@ -10,7 +10,7 @@ const Hero = (props) => {
   return listNews&&listNews.length>0?(
     <div className="container">
         <div className="row" data-aos="fade-up">
-          <div className="col-xl-8  grid-margin borderPanel p-0 " style={{backgroundImage:`url(${listNews[0].image})`,backgroundRepeat:"no-repeat",backgroundPosition:"center",backgroundSize:"cover"}}>
+          <div className="col-xl-8  grid-margin borderPanel p-0 animation" style={{backgroundImage:`url(${listNews[0].image})`,backgroundRepeat:"no-repeat",backgroundPosition:"center",backgroundSize:"cover"}}>
             <div className="big-content">
               <div className="banner-content">
                 <div className="content">
@@ -41,7 +41,7 @@ const Hero = (props) => {
                   <div className="col-xl-8 pr-3 font-weight-bold">
                     <Link
                       style={{ color: "white", textDecoration: "none" }}
-                      to={"#"}
+                      to={`/news/${sliceLink(feed.link)}`} state={`${feed.link}`}
                       >
                       <h5 className="text-line-2">
                         {feed.title}

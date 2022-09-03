@@ -21,6 +21,9 @@ export const getListSubNews = createAsyncThunk("news/subNews",async (params,thun
     `${DOMAIN.NGUOIDUATIN}/xa-hoi.rss`,
     `${DOMAIN.NGUOIDUATIN}/da-chieu.rss`,
     `${DOMAIN.NGUOIDUATIN}/video.rss`,
+    `${DOMAIN.VNEXPRESS}/tin-xem-nhieu.rss`,
+    `${DOMAIN.VNEXPRESS}/tin-moi-nhat.rss`
+
   ];
   const requests = [];
   const resp = await feedService.getAll(urlAPIs[0]);
@@ -33,6 +36,10 @@ export const getListSubNews = createAsyncThunk("news/subNews",async (params,thun
   requests.push(resp4);
   const resp5 = await feedService.getAll(urlAPIs[4]);
   requests.push(resp5);
+  const resp6 = await feedService.getAll(urlAPIs[5]);
+  requests.push(resp6);
+  const resp7 = await feedService.getAll(urlAPIs[6]);
+  requests.push(resp7);
   const result = [];
   axios
     .all(requests)
@@ -43,6 +50,9 @@ export const getListSubNews = createAsyncThunk("news/subNews",async (params,thun
         result.push({title:"xa-hoi",data:responses[2].data});
         result.push({title:"da-chieu",data:responses[3].data});
         result.push({title:"video",data:responses[4].data});
+        result.push({title:"tin-xem-nhieu",data:responses[5].data});
+        result.push({title:"tin-moi-nhat",data:responses[6].data});
+        result.push({})
       })
     )
     .catch((errors) => {
@@ -88,4 +98,5 @@ export const newsSlice = createSlice({
 export const { getCategory, getNews } = newsSlice.actions;
 export const selectListNew = state => state.news.listNews;
 export const selectListSubNews = (state,script) => state.news.listSubNews.filter((e)=>e.title==script)[0];
+export const selectListSubCategories = (state,script) => state.news.categories.filter((e)=>e.script==script)[0];
 export default newsSlice.reducer;

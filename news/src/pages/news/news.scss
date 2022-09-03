@@ -4,6 +4,31 @@
         .row{
             padding: 1rem;
             background-color: whitesmoke;
+            padding-top: 3rem;
+            .col-lg-8{
+                padding-left: 2em;
+                padding-right: 0;
+            }
+            .col-lg-3{
+               margin-top: 8.4em;
+               max-width: 450px;
+               padding-left: 2em;
+               border-left:1px solid rgba(128, 128, 128, 0.199);
+            }
+            @media screen and (max-width : 1024px) {
+                .col-lg-3{
+                    max-width: 100%;
+                    border-left:none;
+                    padding-left: 1em;
+                 }
+            }
+        }
+        .content-bottom{
+            @media screen and (max-width : 1024px) {
+                .coment-facebook{
+                    width: 100%;
+                }
+            }
         }
     }
 }
