@@ -4,7 +4,7 @@ const VideoMainContent = ({feedVideo}) => {
  
   return (
     <div>
-        <img src={`${feedVideo.image}`} style={{width:"100%"}} alt='video'></img>
+        <img src={`${feedVideo.image}`} style={{width:"100%",height:"450px"}} alt='video'></img>
         <h3 style={{marginTop:"10px"}}>{feedVideo.title}</h3>
     </div> 
   )

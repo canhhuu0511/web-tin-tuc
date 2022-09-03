@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { dateFormatService } from "../../../services/dateFormat";
 import LoadingSkeleton from "../../loading-skeleton/loading-skeleton";
 import "./card.scss";
 

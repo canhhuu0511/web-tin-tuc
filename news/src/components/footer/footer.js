@@ -3,6 +3,7 @@ import { selectListSubNews } from "../../redux/slices/newsSlice";
 import "./footer.scss";
 import { useSelector } from "react-redux";
 import ListRecentNews from "./listRecentNews/listRecentNews";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const listRecentPost = useSelector((state) =>
@@ -24,7 +25,7 @@ const Footer = () => {
               style={{ position: "relative", top: "-15px" }}
               className="col-lg-5 left-footer"
             >
-              <a className="navbar-brand" href="#">
+              <Link to={""}>
                 <h2
                   style={{
                     fontSize: "1.5em",
@@ -34,11 +35,9 @@ const Footer = () => {
                 >
                   KENH33
                 </h2>
-              </a>
+              </Link>
               <h5 className="font-weight-normal  mb-5">
-                Newspaper is your news, entertainment, music fashion website. We
-                provide you with the latest breaking news and videos straight
-                from the entertainment industry.
+                My name is Canh , I'm a web developer
               </h5>
               <ul className="social-media icons-footer mb-3">
                 <li>

@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { DOMAIN } from "../../constants/path";
 import { selectListSubCategories } from "../../redux/slices/newsSlice";
 import { feedService } from "../../services/FeedAPI";
+import Loading from "../loading_page/Loading";
 import Popular_news from "../news/popular_news/popular_news";
 import Card from "./card";
 import "./newByCategory.scss";
@@ -17,7 +18,6 @@ const NewsByCategory = () => {
   const category = useSelector((state) =>
     selectListSubCategories(state, `/c/${type}`)
   );
-  const randomNumber = Math.floor(Math.random() * 10);
 
   useEffect(() => {
     feedService
@@ -72,7 +72,7 @@ const NewsByCategory = () => {
                   </div>
                 </div>
                 <div className="main-content">
-                    {data.slice(randomNumber,randomNumber+9).map((feed,key)=>{
+                    {data.slice(1,9).map((feed,key)=>{
                         return <Card key={key} feed={feed}/>
                     })}
                 </div>
@@ -87,7 +87,7 @@ const NewsByCategory = () => {
         </div>
       </div>
     </div>
-  ):<>loading...</>;
+  ):<></>;
 };
 
 export default memo(NewsByCategory);

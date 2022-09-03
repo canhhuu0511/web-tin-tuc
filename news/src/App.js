@@ -1,5 +1,4 @@
 import Default_Template from "./pages/default_teamplate";
-import NewDetail from "./pages/news/new_detail/new_detail";
 import "./global.scss";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NotFound from "./pages/not_found/not_found";
@@ -14,11 +13,10 @@ import {
 } from "./redux/slices/newsSlice";
 import NewsByCategory from "./pages/news_by_category/newsByCategory";
 import Contact from "./pages/contact/contact";
+import ScrollToTop from "./services/scroll2Top"
 
 function App() {
-  const [listNews, setListNews] = useState([]);
   const dispatch = useDispatch();
-
   const Home = lazy(() =>
     import("./pages/home/home").then((module) => ({
       default: module.Home,
@@ -39,20 +37,21 @@ function App() {
   }, []);
   return (
     <BrowserRouter>
-      <Suspense fallback={<Loading />}>
-        <Routes>
-          <Route path="" element={<Default_Template />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="news/:url" element={<News />} />
-            <Route path="c/:type" element={<NewsByCategory />}>
-              <Route path=":subtype" element={<NewsByCategory />} />
+      <ScrollToTop/>
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="" element={<Default_Template />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="news/:url" element={<News />} />
+              <Route path="c/:type" element={<NewsByCategory />}>
+                <Route path=":subtype" element={<NewsByCategory />} />
+              </Route>
             </Route>
-          </Route>
-          <Route path="*" element={<NotFound />} />
-          <Route path="/loading" element={<Loading />} />
-        </Routes>
-      </Suspense>
+            <Route path="*" element={<NotFound />} />
+            <Route path="/loading" element={<Loading />} />
+          </Routes>
+        </Suspense>
     </BrowserRouter>
   );
 }

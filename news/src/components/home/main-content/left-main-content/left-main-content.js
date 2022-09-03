@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 import { selectListNew } from "../../../../redux/slices/newsSlice";
 
 const LeftMainContent = ({ categories }) => {
-  const [listNews, setListNews] = useState([]);
   const news = useSelector(selectListNew);
 
   useEffect(() => {
@@ -16,7 +15,7 @@ const LeftMainContent = ({ categories }) => {
   return (
     <div>
       {categories.map((e, index) => (
-        <Card key={index} category={e} listNews={listNews} />
+        <Card key={index} category={e}  />
       ))}
     </div>
   );

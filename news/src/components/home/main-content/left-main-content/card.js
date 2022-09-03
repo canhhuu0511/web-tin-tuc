@@ -31,7 +31,7 @@ const Card = ({ category }) => {
         </ul>
         <div className="row">
           <div className="col-lg-9 row mb-3">
-            <img className="col" srcSet={`${listNews[0].image} 2x`} alt="" />
+            <img className="col" style={{height:"165px"}} srcSet={`${listNews[0].image} 2x`} alt="" />
             <div className="info col ">
               <Link to={`/news/${sliceLink(listNews[0].link)}`} state={`${listNews[0].link}`} ><h2>{listNews[0].title}</h2></Link>
               <p>{listNews[0].description}</p>
