@@ -88,11 +88,8 @@ public class WebCrawler {
         List<CategoryDTO> result = new ArrayList<>();
         try {
             Document doc = Jsoup.connect(URL).get();
-
             Elements elements = doc.getElementsByClass("row");
-
             Element element = elements.get(elements.size() - 4);
-
             for (Element ele : element.children()) {
                 if (ele.child(0).text().equals(categoryName)) {
                     if (ele.children().size() >= 2) {
@@ -106,10 +103,7 @@ public class WebCrawler {
         } catch (IOException e) {
             System.err.println("For '" + URL + "': " + e.getMessage());
         }
-
         return null;
     }
-
-
 
 }
